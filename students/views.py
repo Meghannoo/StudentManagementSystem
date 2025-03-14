@@ -37,7 +37,7 @@ def student_update(request, pk):
         if form.is_valid():
             form.save()
             messages.success(request, 'Student updated successfully!')
-            return redirect('home')
+            return redirect('student_list')
     else:
         form = StudentForm(instance=student)
     return render(request, 'students/student_form.html', {'form': form})
@@ -48,5 +48,5 @@ def student_delete(request, pk):
     if request.method == 'POST':
         student.delete()
         messages.success(request, 'Student deleted successfully!')
-        return redirect('home')
+        return redirect('student_list')
     return render(request, 'students/student_confirm_delete.html', {'student': student})
